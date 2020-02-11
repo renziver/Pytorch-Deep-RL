@@ -243,4 +243,5 @@ tags
 .idea/
 
 datasets/
-assets/
+feedforward_neural_network/datasets/
+feedforward_neural_network/assets/
