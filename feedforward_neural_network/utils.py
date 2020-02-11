@@ -10,7 +10,8 @@ def config_args(config, heading):
     """
     with open('config.yaml', 'rb') as file:
         conf = yaml.safe_load(file)
-    return conf[heading]
+    args = [val for val in conf[heading].values()]
+    return args
 
 def load_dataset(batch_size):
     train_dataset = torchvision.datasets.MNIST(root='datasets/',

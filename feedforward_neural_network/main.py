@@ -5,14 +5,8 @@ import torchvision.transforms as transforms
 from feedforward_neural_network.ffnn import NeuralNet
 from feedforward_neural_network.utils import config_args, load_dataset
 
-args = config_args('config.yaml', 'hyperparams')
-input_size = args['input_size']
-hidden_size = args['hidden_size']
-num_classes = args['num_classes']
-num_epochs = args['num_epochs']
-batch_size = args['batch_size']
-learning_rate = args['learning_rate']
-save_model = args['save_model']
+input_size, hidden_size, num_classes, num_epochs, batch_size, \
+learning_rate, save_model = config_args('config.yaml', 'hyperparams')
 
 device = torch.device('cuda' if torch.cuda.is_available()
                       else 'cpu')
