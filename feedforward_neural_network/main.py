@@ -48,4 +48,4 @@ with torch.no_grad():
          .format(100 * correct / total))
 
 if save_model:
-    torch.save(model.state_dict(),'assets/model.ckpt')
+    torch.save(model.state_dict(),'assets/models/model.ckpt')
