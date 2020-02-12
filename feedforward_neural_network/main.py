@@ -20,7 +20,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 total_step = len(training_set)
 for epoch in range(num_epochs):
     for index, (images, labels) in enumerate(training_set):
-        images = images.reshape(-1, 28*28).to(device)
+        images = images.reshape(-1, input_size).to(device)
         labels = labels.to(device)
 
         outputs = model.forward_pass(images)
