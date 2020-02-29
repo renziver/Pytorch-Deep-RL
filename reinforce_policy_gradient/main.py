@@ -8,16 +8,19 @@ from reinforce_policy_gradient.utils import config_args, load_dataset, one_hot_e
 device = torch.device('cuda' if torch.cuda.is_available()
                       else 'cpu')
 
+# Get the hyperparameters
 input_size, hidden_size, num_classes, num_epochs, batch_size, \
     learning_rate, save_model = config_args('config.yaml', 'hyperparams')
 
+# Load the transformed dataset
 training_set, test_set = load_dataset(batch_size)
 
+# Construct the model
 model = Policy(input_size, hidden_size, num_classes).to(device)
 loss_function = reinforce
-
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
+# Train the model
 total_step = len(training_set)
 tau = []
 loss_values = []
@@ -63,5 +66,6 @@ with torch.no_grad():
     print('Accuracy of the network on the 1000 test images: {} %'
           .format(100 * correct / total))
 
+# Save the model (optional)
 if save_model:
     torch.save(model.state_dict(), 'assets/models/model.ckpt')
