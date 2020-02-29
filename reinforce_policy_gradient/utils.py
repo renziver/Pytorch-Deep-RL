@@ -6,7 +6,8 @@ import yaml
 
 def config_args(config, heading):
     """Return hyperparameters in the configuration file.
-    Keyword arguments:
+
+    Args:
     config -- the configuration file that contains the hyperparameters needed for the program.
     """
     with open('config.yaml', 'rb') as file:
@@ -15,7 +16,23 @@ def config_args(config, heading):
     return args
 
 
+def one_hot_embedding(labels, num_classes):
+    """Return one-hot form of class labels
+
+    Args:
+      labels: class labels.
+      num_classes: number of classes.
+    """
+    y = torch.eye(num_classes)
+    return y[labels]
+
+
 def load_dataset(batch_size):
+    """Return the transformed dataset
+
+    Args:
+        batch_size: the size of the training batch
+    """
     train_dataset = torchvision.datasets.MNIST(root='datasets/',
                                                train=True,
                                                transform=transforms.ToTensor(),
@@ -33,17 +50,3 @@ def load_dataset(batch_size):
                                               batch_size=batch_size,
                                               shuffle=False)
     return train_loader, test_loader
-
-
-def one_hot_embedding(labels, num_classes):
-    """Embedding labels to one-hot form.
-
-    Args:
-      labels: (LongTensor) class labels, sized [N,].
-      num_classes: (int) number of classes.
-
-    Returns:
-      (tensor) encoded labels, sized [N, #classes].
-    """
-    y = torch.eye(num_classes)
-    return y[labels]
