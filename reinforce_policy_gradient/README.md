@@ -7,6 +7,10 @@ This implementation is based on the 1992 paper of R.J. Williams entitled *[Simpl
 ## Experiment
 The policy is derived from a simple feed forward neural network that classifies the [MNIST Database of Handwritten Digits](http://yann.lecun.com/exdb/mnist/). The reward is based on the number of correct predictions that the policy yields, and to address high variance issue, a baseline that is independent from the policy parameters is subtracted to the reward function. 
 ![REINFORCE with baseline algorithm](assets/images/reinforce_baseline.png)
+
+## Results
+The results show that the agent is maximizing the expected return following a certain policy.
+![REINFORCE experiments results](assets/images/results.png)
 ## Usage
 Install the dependencies from the requirements.txt file
 
